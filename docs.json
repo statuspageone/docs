@@ -15,16 +15,7 @@
         "groups": [
           {
             "group": "Getting Started",
-            "pages": ["index", "quickstart", "development"]
-          }
-        ]
-      },
-      {
-        "tab": "Product Documentation",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": ["docs/getting-started/introduction"]
+            "pages": ["index", "docs/getting-started/introduction"]
           },
           {
             "group": "Monitoring",
