@@ -1,0 +1,240 @@
+---
+title: "Incident Updates"
+description: "Add timeline updates to keep users informed during incidents"
+---
+
+## Overview
+
+Incident updates allow you to add progress reports to ongoing incidents, keeping users informed as you work toward resolution.
+
+## Adding an Update
+
+To add an update to an existing incident:
+
+1. Navigate to your **Status Page**
+2. Click **Incidents**
+3. Select the active incident
+4. Click **Add Update** or similar button
+
+### Update Fields
+
+**Status** (select from dropdown):
+- Investigating
+- Identified
+- Monitoring
+- Resolved
+
+**Message**:
+- Clear, concise update on current situation
+- What you've discovered or fixed
+- What you're doing next
+- Estimated resolution time (if known)
+
+**Affected Components** (optional):
+- Update which services are impacted
+- Can change as incident evolves
+
+## Update Timeline
+
+All updates appear in chronological order on your status page, showing:
+- Timestamp of each update
+- Status at that time
+- Update message
+- Who posted it (internal only)
+
+## Update Frequency Guidelines
+
+### Critical Incidents
+- **First 15 minutes:** Every 5-10 minutes
+- **Next 30 minutes:** Every 15 minutes
+- **After 1 hour:** Every 30 minutes
+- **Even without progress:** Update to show you're working on it
+
+### Major Incidents
+- **First 30 minutes:** Every 15 minutes
+- **After 30 minutes:** Every 30-60 minutes
+
+### Minor Incidents
+- **First hour:** Every 30 minutes
+- **After resolution:** Final update with summary
+
+<Warning>
+Long periods without updates make users assume you're not working on the issue. Update regularly even if there's no new information.
+</Warning>
+
+## Update Examples
+
+### Investigating Update
+
+```
+Status: Investigating
+Time: 2:05 PM
+
+We're seeing elevated error rates on the API (approximately 5% of requests).
+Our team is investigating the root cause. We'll provide another update
+within 15 minutes.
+```
+
+### Identified Update
+
+```
+Status: Identified
+Time: 2:18 PM
+
+We've identified the issue as a misconfiguration in our load balancer
+introduced during today's deployment. We're rolling back the deployment
+and expect services to stabilize within 10 minutes.
+```
+
+### Monitoring Update
+
+```
+Status: Monitoring
+Time: 2:35 PM
+
+The deployment has been rolled back and error rates have returned to normal.
+We're monitoring closely for the next 30 minutes to ensure stability before
+marking this incident as resolved.
+```
+
+### Resolved Update
+
+```
+Status: Resolved
+Time: 3:10 PM
+
+All systems are operating normally. Error rates have been at baseline levels
+for the past 30 minutes. The deployment issue has been resolved and we've
+added additional validation to prevent similar issues in the future.
+Thank you for your patience.
+```
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Be Specific About Actions">
+    Don't say "working on it" - say "rolling back deployment" or "restarting database servers".
+  </Accordion>
+
+  <Accordion title="Include Timeframes When Possible">
+    If you can estimate resolution time, include it. If not, say when you'll provide the next update.
+  </Accordion>
+
+  <Accordion title="Explain Impact">
+    Help users understand who is affected and what functionality is impaired.
+  </Accordion>
+
+  <Accordion title="Use Simple Language">
+    Avoid internal terminology. Write for your users, not your team.
+  </Accordion>
+
+  <Accordion title="Acknowledge User Impact">
+    Show empathy. "We understand this is frustrating" goes a long way.
+  </Accordion>
+
+  <Accordion title="Update Even Without Progress">
+    "No update yet, still investigating" is better than silence.
+  </Accordion>
+</AccordionGroup>
+
+## Status Progression
+
+Typical incident progression:
+
+```
+Investigating → Identified → Monitoring → Resolved
+```
+
+But you can skip steps if appropriate:
+```
+Investigating → Resolved (for quick fixes)
+Investigating → Monitoring → Resolved (if cause is unclear)
+```
+
+## What NOT to Include
+
+- Internal team member names
+- Internal ticket/bug IDs
+- Blame or finger-pointing
+- Sensitive technical details
+- Excessive technical jargon
+- Promises you can't keep
+
+## Notification Behavior
+
+When you add an incident update:
+- Status page is updated immediately
+- Subscribers receive notifications (if configured)
+- Slack/Teams channels receive posts
+- RSS feed is updated
+- Status badge reflects current state
+
+<Tip>
+Subscribers only get notified when you change the incident status, not for every update. This prevents notification fatigue.
+</Tip>
+
+## Editing Past Updates
+
+Some platforms allow editing previous updates:
+- Fix typos or unclear language
+- Add missing information
+- Clarify technical details
+
+However, avoid:
+- Deleting updates to hide mistakes
+- Changing the meaning of past updates
+- Removing timestamps or chronology
+
+## Templates for Common Scenarios
+
+### Database Issues
+
+```
+Investigating: We're experiencing database connection issues affecting
+[service]. Users may see errors when [action]. Investigating now.
+
+Identified: Issue traced to [specific cause]. Implementing [solution].
+ETA: [timeframe].
+
+Resolved: Database connectivity restored. All services operating normally.
+```
+
+### API Slowdowns
+
+```
+Investigating: API response times are slower than normal (500ms vs usual 100ms).
+Checking server load and database queries.
+
+Monitoring: Implemented query optimization. Response times improving
+(now 150ms average). Monitoring for stability.
+
+Resolved: API performance back to normal levels. Average response time: 95ms.
+```
+
+### Deployment Rollback
+
+```
+Investigating: Recent deployment causing errors in [feature]. Rolling back now.
+
+Monitoring: Rollback complete. Error rates decreasing. Watching metrics.
+
+Resolved: All systems stable. Deployment has been rolled back.
+Issue will be fixed before next deployment.
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Manage Incidents" icon="triangle-exclamation" href="/docs/incidents-maintenance/incidents">
+    Back to incident management
+  </Card>
+  <Card title="Scheduled Maintenance" icon="wrench" href="/docs/incidents-maintenance/maintenance">
+    Plan maintenance windows
+  </Card>
+  <Card title="Notifications" icon="bell" href="/docs/notifications/alert-rules">
+    Configure who receives updates
+  </Card>
+  <Card title="Status Pages" icon="browser" href="/docs/status-pages/overview">
+    Manage your status page
+  </Card>
+</CardGroup>
