@@ -1,0 +1,263 @@
+---
+title: "Maintenance Updates"
+description: "Keep users informed during scheduled maintenance windows"
+---
+
+## Overview
+
+Maintenance updates allow you to communicate progress during planned downtime, letting users know how the maintenance is proceeding.
+
+## Adding a Maintenance Update
+
+To update an ongoing maintenance window:
+
+1. Navigate to your **Status Page**
+2. Click **Maintenance**
+3. Select the active maintenance event
+4. Click **Add Update** or similar button
+
+### Update Fields
+
+**Status:**
+- **Scheduled** - Not yet started
+- **In Progress** - Currently underway
+- **Completed** - Finished successfully
+
+**Message:**
+- Current progress
+- Any delays or issues
+- Updated completion estimate
+- What you're working on now
+
+## Update Timeline
+
+Provide updates at key milestones:
+
+### Before Maintenance Starts
+
+**24 Hours Before:**
+```
+Reminder: Scheduled maintenance begins tomorrow at 2:00 AM UTC.
+Website and API will be unavailable for approximately 2 hours.
+```
+
+**1 Hour Before:**
+```
+Maintenance begins in 1 hour (2:00 AM UTC). All services will be
+temporarily unavailable while we upgrade our database servers.
+```
+
+### During Maintenance
+
+**When Starting:**
+```
+Status: In Progress
+Maintenance has begun. Database servers are being upgraded.
+Expected completion: 4:00 AM UTC.
+```
+
+**Mid-Maintenance:**
+```
+Status: In Progress
+Upgrade is 50% complete. Proceeding as planned. Still expecting
+completion by 4:00 AM UTC.
+```
+
+**If Delayed:**
+```
+Status: In Progress
+We're experiencing a minor delay. New estimated completion: 4:30 AM UTC.
+We'll provide another update in 30 minutes.
+```
+
+### After Completion
+
+**Successful Completion:**
+```
+Status: Completed
+Maintenance completed successfully at 3:45 AM UTC (15 minutes ahead
+of schedule). All services are now fully operational. Thank you for
+your patience.
+```
+
+**Early Completion:**
+```
+Status: Completed
+Great news! Maintenance completed ahead of schedule at 3:30 AM UTC.
+All systems are operational and performing well.
+```
+
+## Update Frequency
+
+### Normal Maintenance (< 2 hours)
+
+- **Before start:** 24 hours and 1 hour reminders
+- **At start:** Immediate update
+- **During:** Update if longer than 1 hour
+- **At completion:** Final confirmation
+
+### Extended Maintenance (> 2 hours)
+
+- **Before start:** 1 week, 24 hours, and 1 hour reminders
+- **At start:** Immediate update
+- **During:** Every 60-90 minutes
+- **At completion:** Final confirmation with summary
+
+<Tip>
+For maintenance longer than 1 hour, provide progress updates every hour so users know things are proceeding as planned.
+</Tip>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Start and End on Time">
+    Begin exactly when scheduled. If you finish early, that's a bonus. Running late frustrates users.
+  </Accordion>
+
+  <Accordion title="Communicate Delays Immediately">
+    If maintenance will take longer than expected, tell users right away and provide a new estimate.
+  </Accordion>
+
+  <Accordion title="Provide Progress Indicators">
+    "50% complete" or "2 of 4 servers migrated" helps users understand how much longer to wait.
+  </Accordion>
+
+  <Accordion title="Confirm When Services Resume">
+    Don't assume users will check. Explicitly state "All services are now operational."
+  </Accordion>
+
+  <Accordion title="Thank Users">
+    Acknowledge the inconvenience and thank users for their patience.
+  </Accordion>
+
+  <Accordion title="Post-Maintenance Verification">
+    After completing, verify all services are working before posting final update.
+  </Accordion>
+</AccordionGroup>
+
+## Handling Complications
+
+### Unexpected Issues During Maintenance
+
+```
+Status: In Progress
+We've encountered an unexpected issue during the database migration.
+Our team is working to resolve it. We'll provide an update within
+30 minutes with a revised completion time.
+```
+
+### Rolling Back
+
+```
+Status: In Progress
+Due to compatibility issues discovered during testing, we're rolling
+back the changes. Services will be restored to their previous state.
+Expected completion: 3:30 AM UTC.
+```
+
+### Converting to Incident
+
+If maintenance uncovers critical issues:
+
+```
+Update: During maintenance, we discovered a critical issue that requires
+immediate attention. We're converting this to an incident and will
+provide updates as we work toward resolution.
+```
+
+Then create an incident to continue communication.
+
+## Communication Templates
+
+### Infrastructure Upgrade
+
+```
+Pre-Start (24h): Reminder - Server upgrade tomorrow at 2 AM UTC
+Start: Server upgrade in progress. Services temporarily unavailable.
+Progress: Upgrade 75% complete. On schedule for 4 AM completion.
+Complete: Servers upgraded successfully. All services operational.
+```
+
+### Database Maintenance
+
+```
+Pre-Start (1h): Database optimization begins in 1 hour
+Start: Database optimization in progress. Read-only mode enabled.
+Progress: Index rebuild complete. Running optimization checks.
+Complete: Database optimization complete. Full service restored.
+```
+
+### Security Updates
+
+```
+Pre-Start (24h): Critical security updates scheduled for tomorrow
+Start: Applying security patches. Brief service interruption expected.
+Complete: Security updates applied successfully. Services fully operational.
+```
+
+## What to Include in Updates
+
+**Do Include:**
+- Current status and progress
+- What you're doing right now
+- Estimated completion time
+- Any changes to the plan
+- Impact on services
+
+**Don't Include:**
+- Internal team discussions
+- Technical implementation details
+- Internal tool names or ticket IDs
+- Blame or excuses
+- Unconfirmed information
+
+## Notification Behavior
+
+When you add a maintenance update:
+- Status page is updated immediately
+- Subscribers receive notifications for status changes
+- Timeline is updated publicly
+- Status badge may update
+- Calendar feeds are updated
+
+<Note>
+Not all updates trigger notifications. Typically only status changes (Scheduled → In Progress → Completed) generate notifications to avoid alert fatigue.
+</Note>
+
+## Completing Maintenance
+
+Final update should include:
+
+1. **Confirmation of completion**
+2. **Actual vs estimated duration**
+3. **Service status verification**
+4. **Benefits delivered**
+5. **Thank you message**
+
+**Example:**
+```
+Status: Completed
+
+Maintenance completed at 3:50 AM UTC. All database servers have been
+successfully upgraded and are performing excellently. Initial tests
+show a 40% improvement in query performance.
+
+Thank you for your patience during this maintenance window.
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Schedule Maintenance" icon="calendar" href="/docs/incidents-maintenance/maintenance">
+    Back to maintenance scheduling
+  </Card>
+  <Card title="Manage Incidents" icon="triangle-exclamation" href="/docs/incidents-maintenance/incidents">
+    Handle unplanned outages
+  </Card>
+  <Card title="Incident Updates" icon="comments" href="/docs/incidents-maintenance/incident-updates">
+    Communicate during incidents
+  </Card>
+  <Card title="Notifications" icon="bell" href="/docs/notifications/alert-rules">
+    Configure update notifications
+  </Card>
+</CardGroup>

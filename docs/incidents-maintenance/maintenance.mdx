@@ -1,0 +1,258 @@
+---
+title: "Scheduled Maintenance"
+description: "Plan and communicate scheduled maintenance windows to your users"
+---
+
+## What is Scheduled Maintenance?
+
+Scheduled maintenance represents planned downtime or service disruptions. Unlike incidents (which are unplanned), maintenance windows are communicated in advance to set user expectations.
+
+## Creating a Maintenance Window
+
+To schedule maintenance:
+
+1. Navigate to your **Status Page**
+2. Click **Maintenance**
+3. Click **+ Schedule Maintenance** or similar button
+4. Fill in the maintenance details
+
+### Maintenance Information
+
+**Title:**
+- Clear description of what you're doing
+- Example: "Database Upgrade"
+- Example: "Server Migration"
+
+**Affected Components:**
+- Select which services will be impacted
+- Users can see exactly what won't work
+- Can select multiple components
+
+**Scheduled Start Time:**
+- When maintenance begins
+- Include timezone
+- Be specific (not "around 2pm")
+
+**Estimated Duration:**
+- How long you expect it to take
+- Add buffer time to be safe
+- Example: "2 hours" or "30 minutes"
+
+**Status:**
+- **Scheduled** - Planned for future
+- **In Progress** - Currently happening
+- **Completed** - Finished
+
+## Maintenance Lifecycle
+
+### 1. Scheduled (Before Maintenance)
+
+When planning maintenance:
+- Create maintenance event
+- Set start time (typically 24-72 hours in advance)
+- Provide estimated duration
+- Explain what you'll be doing
+- List affected services
+
+**Example:**
+```
+Title: Database Performance Upgrade
+Scheduled: March 15, 2026 at 2:00 AM UTC
+Duration: 2 hours
+Components: Website, API
+Message: We'll be upgrading our database servers to improve performance.
+During this time, the website and API will be unavailable.
+```
+
+### 2. In Progress (During Maintenance)
+
+When maintenance starts:
+- Update status to "In Progress"
+- Add updates on progress
+- Extend duration if needed
+
+### 3. Completed (After Maintenance)
+
+When finished:
+- Update status to "Completed"
+- Confirm all services restored
+- Note if completed early/late
+- Thank users for patience
+
+## Timing Recommendations
+
+### Advance Notice
+
+- **Minor changes** (< 15 min): 24-48 hours notice
+- **Moderate changes** (15 min - 2 hours): 3-7 days notice
+- **Major changes** (> 2 hours): 1-2 weeks notice
+
+### Scheduling Windows
+
+**Best Times:**
+- Overnight in your users' primary timezone
+- Weekends for B2B services
+- Weekdays for consumer services
+- Avoid holidays and peak business hours
+
+**Considerations:**
+- Global audience? Pick time that minimizes impact
+- B2B service? Avoid business hours
+- Consumer service? Avoid evenings/weekends
+
+<Tip>
+Schedule maintenance for 2 AM - 4 AM in your users' primary timezone. This typically has the lowest traffic.
+</Tip>
+
+## Communication Best Practices
+
+<AccordionGroup>
+  <Accordion title="Provide Advance Notice">
+    Give users enough time to plan around the outage. Last-minute maintenance frustrates users.
+  </Accordion>
+
+  <Accordion title="Be Specific About Timing">
+    Include exact start time with timezone. "2:00 AM UTC" not "early morning".
+  </Accordion>
+
+  <Accordion title="Explain the Benefit">
+    Tell users why you're doing this. "To improve performance" or "To enhance security".
+  </Accordion>
+
+  <Accordion title="List Affected Services">
+    Be clear about what won't work. Users can plan workarounds.
+  </Accordion>
+
+  <Accordion title="Add Buffer Time">
+    Estimate conservatively. Finishing early is better than running late.
+  </Accordion>
+
+  <Accordion title="Send Reminders">
+    Remind users 24 hours before and 1 hour before maintenance starts.
+  </Accordion>
+</AccordionGroup>
+
+## Maintenance Types
+
+### System Upgrades
+
+```
+Title: Application Server Upgrade
+Duration: 1 hour
+Impact: Website will be unavailable
+Benefit: Improved performance and security patches
+```
+
+### Database Maintenance
+
+```
+Title: Database Index Optimization
+Duration: 30 minutes
+Impact: Read-only mode (viewing works, edits disabled)
+Benefit: Faster query performance
+```
+
+### Infrastructure Changes
+
+```
+Title: Data Center Migration
+Duration: 4 hours
+Impact: All services unavailable
+Benefit: Better reliability and lower latency
+```
+
+### Security Updates
+
+```
+Title: Security Patch Deployment
+Duration: 15 minutes
+Impact: Brief service interruption
+Benefit: Critical security updates
+```
+
+## Emergency Maintenance
+
+Sometimes maintenance can't be scheduled in advance:
+
+**Emergency Maintenance:**
+- Critical security vulnerability
+- Immediate risk to service
+- Regulatory compliance requirement
+
+**Approach:**
+1. Post maintenance notice immediately
+2. Explain why it's urgent
+3. Apologize for short notice
+4. Keep users updated frequently
+
+```
+Title: Emergency Security Patch
+Status: In Progress
+Notice: We're applying a critical security patch. We apologize for the
+short notice, but this update is necessary to protect user data.
+Expected duration: 30 minutes.
+```
+
+## Maintenance vs Incidents
+
+| Maintenance | Incidents |
+|------------|-----------|
+| Planned in advance | Unplanned / Emergency |
+| Scheduled start time | Starts when detected |
+| Users notified beforehand | Users notified when it happens |
+| Controlled downtime | Unexpected downtime |
+| Status: Scheduled → In Progress → Completed | Status: Investigating → Resolved |
+
+## Where Maintenance Appears
+
+- **Status Page** - Prominently displayed before start time
+- **Email** - Sent to subscribers when scheduled
+- **Calendar Feeds** - Users can add to their calendars
+- **Slack/Teams** - Posted to configured channels
+- **Status Badge** - May indicate upcoming maintenance
+
+## Canceling Maintenance
+
+If maintenance is no longer needed:
+
+1. Update the maintenance event
+2. Change status to "Canceled" (if available) or delete
+3. Post an update explaining the cancellation
+4. Notify subscribers
+
+```
+Update: This maintenance has been canceled. The upgrade was completed
+during lower-traffic hours without requiring downtime. All services
+remain fully operational.
+```
+
+## Post-Maintenance Review
+
+After completing maintenance:
+
+1. **Verify all services** are working
+2. **Check monitoring** for anomalies
+3. **Review duration** - was estimate accurate?
+4. **Document learnings** for future maintenance
+5. **Update users** on successful completion
+
+<Card title="Add Maintenance Updates" icon="message" href="/docs/incidents-maintenance/maintenance-updates">
+  Learn how to update users during maintenance
+</Card>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Maintenance Updates" icon="comments" href="/docs/incidents-maintenance/maintenance-updates">
+    Communicate progress during maintenance
+  </Card>
+  <Card title="Manage Incidents" icon="triangle-exclamation" href="/docs/incidents-maintenance/incidents">
+    Handle unplanned outages
+  </Card>
+  <Card title="Status Pages" icon="browser" href="/docs/status-pages/overview">
+    Configure your status page
+  </Card>
+  <Card title="Notifications" icon="bell" href="/docs/notifications/alert-rules">
+    Set up maintenance notifications
+  </Card>
+</CardGroup>
