@@ -1,0 +1,309 @@
+---
+title: "Monitor Alerts"
+description: "Configure notifications for individual monitors to get alerted when issues occur"
+---
+
+## Overview
+
+Monitor-specific alerts allow you to configure custom notifications for individual monitors. This is useful when different monitors require different notification channels or recipients.
+
+![Monitor Alerts](/images/product/console.statuspageone.com_en-US_org_fvd0bqahqfj5nnf2d4m5n373_monitors_h57gelnp2cn3es7jg4x3vwp6_alerts.png)
+
+## Accessing Monitor Alerts
+
+To configure alerts for a specific monitor:
+
+1. Navigate to **Monitors** in the sidebar
+2. Click on the monitor name to expand it
+3. Select **Alerts**
+
+## Adding an Integration
+
+Click **+ Add Integration** to attach a notification channel to this monitor.
+
+### Available Integration Types
+
+<CardGroup cols={2}>
+  <Card title="Email" icon="envelope">
+    Send alert emails to specific addresses
+  </Card>
+  <Card title="SMS" icon="mobile">
+    Receive text message notifications
+  </Card>
+  <Card title="Slack" icon="slack">
+    Post alerts to Slack channels
+  </Card>
+  <Card title="Webhook" icon="webhook">
+    Send HTTP requests to custom endpoints
+  </Card>
+  <Card title="Microsoft Teams" icon="microsoft">
+    Post to Teams channels
+  </Card>
+  <Card title="Discord" icon="discord">
+    Send to Discord channels
+  </Card>
+  <Card title="Telegram" icon="telegram">
+    Send to Telegram chats
+  </Card>
+  <Card title="More" icon="plus">
+    Additional integrations available
+  </Card>
+</CardGroup>
+
+### Email Integration
+
+To add an email alert:
+
+1. Click **+ Add Integration**
+2. Select **Email** from the integration type dropdown
+3. Enter the email address
+4. Click **Create Integration**
+
+**Use Cases:**
+- Send alerts to team members
+- Notify on-call engineers
+- Alert external stakeholders
+- Route to ticketing systems via email
+
+<Tip>
+You can add multiple email integrations to notify different people or create redundancy.
+</Tip>
+
+### SMS Integration
+
+To add SMS alerts:
+
+1. Click **+ Add Integration**
+2. Select **SMS** from the integration type dropdown
+3. Enter the phone number (with country code)
+4. Click **Create Integration**
+
+**Use Cases:**
+- Immediate notifications for critical services
+- Reach on-call engineers anywhere
+- Backup notification when email is unavailable
+
+<Warning>
+SMS notifications may incur additional costs depending on your plan. Use for critical monitors only.
+</Warning>
+
+## Managing Integrations
+
+Each integration card displays:
+
+- **Integration Type Badge** - Shows the channel type (Email, SMS, etc.)
+- **Notification Status Badge** - Indicates if notifications are enabled
+- **Enabled/Disabled Toggle** - Shows current state (Enabled/Disabled)
+- **Configuration** - The destination (email address, phone number, etc.)
+- **Created Date** - When the integration was added
+- **Actions Menu (···)** - Additional options
+
+### Integration States
+
+**Enabled (Green badge):**
+- ✓ Integration is active
+- ✓ Will receive notifications when monitor goes down
+- ✓ Will receive recovery notifications
+
+**Disabled:**
+- ✗ Integration is paused
+- ✗ Will not receive notifications
+- ✗ Keeps configuration for easy re-enabling
+
+### Disabling an Integration
+
+To temporarily stop notifications without deleting the integration:
+
+1. Click the **···** menu on the integration card
+2. Select **Disable**
+
+The integration will change to disabled state but remains configured for future use.
+
+### Enabling an Integration
+
+To resume notifications:
+
+1. Click the **···** menu on the integration card
+2. Select **Enable**
+
+### Deleting an Integration
+
+To permanently remove an integration:
+
+1. Click the **···** menu on the integration card
+2. Select **Delete**
+3. Confirm the deletion
+
+<Note>
+Deleting an integration removes it permanently. You'll need to reconfigure it if you want to add it back later.
+</Note>
+
+## Notification Behavior
+
+### When Notifications Are Sent
+
+Integrations receive notifications when:
+
+**Monitor Goes Down:**
+- Multiple consecutive checks fail (based on alert sensitivity)
+- Monitor status changes from operational to down
+
+**Monitor Recovers:**
+- First successful check after being down
+- Monitor status returns to operational
+
+**Degraded Performance:**
+- Monitor experiences partial failures
+- Response times exceed thresholds
+
+### Notification Content
+
+Alert notifications typically include:
+
+- **Monitor name** - Which monitor triggered the alert
+- **Status** - Current state (Down, Degraded, or Recovered)
+- **Timestamp** - When the issue was detected
+- **Details** - Response code, error message, or timeout information
+- **Link** - Direct link to monitor statistics
+
+## Monitor-Specific vs. Organization Alerts
+
+### Monitor-Specific Alerts (This Page)
+
+- ✓ Apply to individual monitors
+- ✓ Custom notifications per service
+- ✓ Specific recipients for each monitor
+- ✓ Added on the monitor's Alerts page
+
+### Organization-Wide Alert Rules
+
+- ✓ Apply to all monitors (or filtered groups)
+- ✓ Centralized notification management
+- ✓ Consistent alerting across services
+- ✓ Configured in organization Settings
+
+<Card title="Configure Global Alert Rules" icon="bell" href="/docs/notifications/alert-rules">
+  Set up organization-wide alert rules that apply to multiple monitors
+</Card>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Start with Email">
+    Begin with email notifications as they're reliable and don't incur additional costs. Add SMS for critical monitors only.
+  </Accordion>
+
+  <Accordion title="Notify the Right People">
+    Configure alerts to reach the team responsible for each service. Don't send all alerts to everyone.
+  </Accordion>
+
+  <Accordion title="Use Multiple Channels">
+    For critical monitors, add redundant notifications (e.g., both email and SMS) to ensure alerts are received.
+  </Accordion>
+
+  <Accordion title="Test Your Integrations">
+    After adding integrations, verify they work by checking the next scheduled downtime or using test features.
+  </Accordion>
+
+  <Accordion title="Disable Instead of Delete">
+    If you temporarily don't need notifications, disable integrations rather than deleting them to preserve configuration.
+  </Accordion>
+
+  <Accordion title="Document On-Call Procedures">
+    Ensure team members know what to do when they receive alerts. Include runbooks and escalation procedures.
+  </Accordion>
+</AccordionGroup>
+
+## Common Configurations
+
+### Critical Production Service
+
+```
+Monitor: Production API
+Integrations:
+  - Email: oncall@company.com
+  - Email: engineering@company.com
+  - SMS: +1-555-0123 (On-call engineer)
+  - Slack: #incidents channel
+```
+
+### Internal Tool
+
+```
+Monitor: Internal Dashboard
+Integrations:
+  - Email: devops@company.com
+  - Slack: #devops channel
+```
+
+### Public Website
+
+```
+Monitor: Company Website
+Integrations:
+  - Email: support@company.com
+  - SMS: +1-555-0456 (Engineering lead)
+  - Webhook: https://ticketing.company.com/webhook
+  - Slack: #website-alerts
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Not receiving notifications">
+    **Check:**
+    - Integration is Enabled (green badge)
+    - Email address or phone number is correct
+    - Email isn't in spam folder
+    - SMS number includes correct country code
+  </Accordion>
+
+  <Accordion title="Receiving too many notifications">
+    **Solutions:**
+    - Increase alert sensitivity in monitor settings (more retries before alerting)
+    - Disable non-critical integrations
+    - Use organization-wide alert rules with filtering instead
+  </Accordion>
+
+  <Accordion title="Delayed notifications">
+    **Note:** Notifications are sent immediately when issues are detected. Delays usually indicate:
+    - Email server processing time
+    - SMS carrier delivery time
+    - Network congestion
+  </Accordion>
+</AccordionGroup>
+
+## Integration Types Reference
+
+| Type | Immediate | Persistent | Best For |
+|------|-----------|-----------|----------|
+| Email | ✓ | ✓ | Detailed information, ticketing integration |
+| SMS | ✓✓✓ | ✗ | Critical alerts, on-call notifications |
+| Slack | ✓✓ | ✓ | Team collaboration, incident response |
+| Webhook | ✓✓ | ✗ | Custom integrations, automation |
+| Teams | ✓✓ | ✓ | Microsoft-centric teams |
+| Discord | ✓✓ | ✓ | Gaming/tech communities |
+| Telegram | ✓✓ | ✓ | Mobile-first teams |
+
+**Legend:**
+- ✓✓✓ = Best choice for this use case
+- ✓✓ = Good choice
+- ✓ = Suitable
+- ✗ = Not ideal
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="View Statistics" icon="chart-bar" href="/docs/monitoring/monitor-statistics">
+    Analyze monitor performance and uptime
+  </Card>
+  <Card title="Organization Alert Rules" icon="bell-on" href="/docs/notifications/alert-rules">
+    Configure organization-wide alerting
+  </Card>
+  <Card title="Integrations" icon="plug" href="/docs/notifications/integrations">
+    Set up integrations for all monitors
+  </Card>
+  <Card title="Monitor Settings" icon="gear" href="/docs/monitoring/creating-monitors">
+    Adjust monitor configuration
+  </Card>
+</CardGroup>
