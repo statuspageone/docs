@@ -1,0 +1,128 @@
+---
+title: "Monitors Overview"
+description: "Understand your monitors, their status, and how to manage uptime monitoring"
+---
+
+## What Are Monitors?
+
+Monitors are automated checks that continuously test the availability and performance of your websites, APIs, and services. StatusPage.one monitors run checks every minute to ensure your services are operational.
+
+![Monitors List](/images/product/console.statuspageone.com_en-US_org_fvd0bqahqfj5nnf2d4m5n373_monitors.png)
+
+## Monitor Cards
+
+Each monitor is displayed as a card showing key information at a glance:
+
+### Monitor Information
+
+- **Monitor Name** - The friendly name you gave your monitor (e.g., "Monitor Checks", "statuspageone.com")
+- **URL** - The endpoint being monitored
+- **Status Badge** - Current operational status
+  - **Operational** (Green) - Monitor is up and responding normally
+  - **Degraded** (Yellow) - Monitor is experiencing issues
+  - **Down** (Red) - Monitor is not responding
+- **Request Method** - HTTP method used for checks (GET, POST, etc.)
+- **Uptime Percentage** - Overall uptime over the selected time period
+
+### Monitor Sections
+
+Each monitor in the sidebar provides access to three main sections:
+
+- **Statistics** - View detailed performance metrics and uptime trends
+- **Alerts** - Configure alert rules for this specific monitor
+- **Settings** - Adjust monitor configuration and advanced options
+
+## Monitor Organization
+
+Monitors are organized in the left sidebar for easy navigation:
+
+- Click on a monitor name to expand its options
+- Select **Statistics**, **Alerts**, or **Settings** to view that section
+- Use the **New** button at the top to create additional monitors
+
+## Adding Monitors
+
+To add a new monitor, click the **Add monitor** button or the **+ New** button in the sidebar. This will open the monitor creation form where you can configure your new uptime check.
+
+<Card title="Create Your First Monitor" icon="plus" href="/docs/monitoring/creating-monitors">
+  Learn how to set up a new monitor
+</Card>
+
+## Monitor Status Indicators
+
+### Operational Status
+
+The status badge shows the real-time operational state of your monitor:
+
+- **Green (Operational)** - All checks are passing, service is healthy
+- **Yellow (Degraded)** - Some checks are failing or performance is degraded
+- **Red (Down)** - Monitor is consistently failing checks
+
+### Uptime Percentage
+
+The uptime percentage is calculated based on successful checks over the selected time period. For example:
+- **99.85%** indicates excellent uptime with minimal downtime
+- **99.61%** shows very good uptime with occasional issues
+
+<Note>
+Uptime percentages are updated in real-time as checks complete. Higher percentages indicate better reliability.
+</Note>
+
+## Managing Multiple Monitors
+
+You can create unlimited monitors to track all your critical services:
+
+- **Websites** - Monitor your main website and landing pages
+- **APIs** - Track API endpoints and health check routes
+- **Services** - Monitor microservices and backend systems
+- **Third-party Services** - Keep tabs on external dependencies
+
+### Best Practices
+
+<AccordionGroup>
+  <Accordion title="Group Related Monitors">
+    Organize monitors by service or application. For example, create separate monitors for your API, website, and admin panel.
+  </Accordion>
+
+  <Accordion title="Use Descriptive Names">
+    Give monitors clear names that identify what they're checking. "Production API Health" is better than "API Monitor 1".
+  </Accordion>
+
+  <Accordion title="Monitor Critical Paths">
+    Focus on monitoring the most important user-facing endpoints and services first.
+  </Accordion>
+
+  <Accordion title="Set Appropriate Check Intervals">
+    Balance monitoring frequency with your needs. Critical services might need checks every minute, while less critical ones could use longer intervals.
+  </Accordion>
+</AccordionGroup>
+
+## Quick Actions
+
+From the monitors list, you can:
+
+1. **View Statistics** - Click on a monitor's Statistics section to see detailed performance data
+2. **Configure Alerts** - Set up notifications for when monitors go down
+3. **Adjust Settings** - Modify check frequency, timeout values, and other parameters
+4. **Add Monitors** - Quickly create new monitors to expand coverage
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Create a Monitor" icon="plus-circle" href="/docs/monitoring/creating-monitors">
+    Set up your first uptime monitor
+  </Card>
+  <Card title="View Statistics" icon="chart-bar" href="/docs/monitoring/monitor-statistics">
+    Analyze performance and uptime data
+  </Card>
+  <Card title="Configure Alerts" icon="bell" href="/docs/monitoring/monitor-alerts">
+    Get notified when issues occur
+  </Card>
+  <Card title="Build a Status Page" icon="browser" href="/docs/status-pages/overview">
+    Share monitor status with your users
+  </Card>
+</CardGroup>
+
+<Tip>
+Start with monitoring your most critical services first, then expand to cover additional endpoints and dependencies.
+</Tip>
