@@ -1,0 +1,216 @@
+---
+title: "Managing Incidents"
+description: "Create and update incidents to communicate service disruptions with your users"
+---
+
+## What Are Incidents?
+
+Incidents represent unplanned service disruptions or outages. They help you transparently communicate with users about issues affecting your services.
+
+## Creating an Incident
+
+To create a new incident:
+
+1. Navigate to your **Status Page** in the sidebar
+2. Select **Incidents**
+3. Click **+ New Incident** or similar button
+4. Fill in the incident details
+
+### Incident Information
+
+**Incident Title:**
+- Clear, concise description of the issue
+- Example: "API Response Delays"
+- Example: "Website Unavailable"
+
+**Affected Components:**
+- Select which monitors/services are impacted
+- You can select multiple components
+- Helps users quickly see what's affected
+
+**Severity Level:**
+- **Minor** - Small issue, limited impact
+- **Major** - Significant issue affecting many users
+- **Critical** - Complete outage, all users affected
+
+**Status:**
+- **Investigating** - You're looking into the issue
+- **Identified** - Root cause found
+- **Monitoring** - Fix applied, watching for stability
+- **Resolved** - Issue completely fixed
+
+## Incident Lifecycle
+
+### 1. Investigating
+
+When you first detect an issue:
+- Create incident with "Investigating" status
+- Select affected components
+- Provide initial description
+
+**Example:**
+```
+Title: API Response Delays
+Status: Investigating
+Components: API Services
+Message: We're currently experiencing slower than normal API response times.
+Our team is investigating the root cause.
+```
+
+### 2. Identified
+
+Once you know the cause:
+- Update incident status to "Identified"
+- Add an update explaining what you found
+- Provide estimated resolution time if possible
+
+### 3. Monitoring
+
+After applying a fix:
+- Change status to "Monitoring"
+- Explain what was fixed
+- Note that you're watching for stability
+
+### 4. Resolved
+
+When completely fixed:
+- Update status to "Resolved"
+- Summarize the fix
+- Thank users for patience
+- Optionally include post-mortem details
+
+## Incident Updates
+
+Throughout an incident's lifecycle, provide regular updates:
+
+- **First 30 minutes** - Every 10-15 minutes
+- **After 30 minutes** - Every 30-60 minutes
+- **Even without news** - Update to show you're working on it
+
+<Tip>
+Users prefer frequent updates, even if there's no new information. It shows you're actively working on the issue.
+</Tip>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Create Incidents Proactively">
+    Post incidents before users report them. This reduces support load and builds trust.
+  </Accordion>
+
+  <Accordion title="Be Transparent">
+    Explain what happened in simple terms. Users appreciate honesty about issues.
+  </Accordion>
+
+  <Accordion title="Update Frequently">
+    Regular updates show you're actively working on the problem, even if there's no resolution yet.
+  </Accordion>
+
+  <Accordion title="Use Clear Language">
+    Avoid technical jargon. Use language your users understand.
+  </Accordion>
+
+  <Accordion title="Include Timestamps">
+    Automatic timestamps help users understand the timeline of events.
+  </Accordion>
+
+  <Accordion title="Resolve Completely">
+    Only mark incidents as resolved when you're confident the issue won't recur.
+  </Accordion>
+</AccordionGroup>
+
+## Incident Severity Guidelines
+
+### Minor
+
+- Affects < 10% of users
+- Workarounds available
+- Non-critical features impacted
+- Example: "Image uploads slower than usual"
+
+### Major
+
+- Affects 10-50% of users
+- Significant feature degradation
+- No easy workaround
+- Example: "Login delays affecting some users"
+
+### Critical
+
+- Affects > 50% of users or all users
+- Complete service outage
+- Core functionality unavailable
+- Example: "Website completely down"
+
+## Communication Tips
+
+### Initial Incident Post
+
+```
+Title: Database Connection Issues
+Status: Investigating
+Severity: Major
+Affected: Website, API
+
+We're currently experiencing database connection issues affecting
+our website and API. Users may see errors when loading pages.
+Our engineering team is investigating the root cause.
+```
+
+### Mid-Incident Update
+
+```
+Status: Identified
+Update: We've identified the cause as a database configuration issue
+during our recent deployment. We're rolling back the deployment and
+expect service to resume within 15 minutes.
+```
+
+### Resolution Post
+
+```
+Status: Resolved
+Update: The deployment has been rolled back and all services are now
+operating normally. Database connections have been restored. We apologize
+for the inconvenience and are reviewing our deployment process to prevent
+similar issues in the future.
+```
+
+## Where Incidents Appear
+
+- **Status Page** - Public-facing incident timeline
+- **Email** - Sent to subscribers (if configured)
+- **Slack/Teams** - Posted to configured channels
+- **RSS Feed** - Available for automation
+- **Status Badge** - Reflects incident state
+
+## Post-Incident Review
+
+After resolving an incident, consider:
+
+1. **Root Cause Analysis** - What actually happened?
+2. **Impact Assessment** - How many users were affected?
+3. **Timeline Review** - How long did it take to resolve?
+4. **Process Improvements** - How can we prevent this?
+5. **Communication Review** - Did we update users effectively?
+
+<Card title="Create Incident Updates" icon="message" href="/docs/incidents-maintenance/incident-updates">
+  Learn how to add updates to incidents
+</Card>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Incident Updates" icon="comments" href="/docs/incidents-maintenance/incident-updates">
+    Add timeline updates to incidents
+  </Card>
+  <Card title="Scheduled Maintenance" icon="wrench" href="/docs/incidents-maintenance/maintenance">
+    Plan and communicate maintenance windows
+  </Card>
+  <Card title="Status Pages" icon="browser" href="/docs/status-pages/overview">
+    Configure your status page
+  </Card>
+  <Card title="Notifications" icon="bell" href="/docs/notifications/alert-rules">
+    Set up incident notifications
+  </Card>
+</CardGroup>
