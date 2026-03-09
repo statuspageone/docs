@@ -1,0 +1,351 @@
+---
+title: "Status Badges & Embeds"
+description: "Embed real-time status badges on your website, documentation, and README files"
+---
+
+## Overview
+
+Status badges are dynamic images that display your system's current status. They automatically update to reflect your service health, providing users with at-a-glance status information.
+
+![Badge Settings](/images/product/console.statuspageone.com_en-US_status-page_c1rui6avx08bx20fr3bne9vy_settings_tab=badge.png)
+
+## Accessing Badge Settings
+
+1. Navigate to **Status Pages** in the sidebar
+2. Select your status page
+3. Click **Settings**
+4. Select the **Badge** tab
+
+## Badge Preview
+
+The badge settings show three preview states:
+
+### Operational (Green)
+- **Text:** "All systems operational"
+- **Color:** Green background
+- **Indicator:** Green dot
+- **Meaning:** All monitors are passing checks
+
+### Unavailable (Red)
+- **Text:** "Server unavailable"
+- **Color:** Red background
+- **Indicator:** Red dot
+- **Meaning:** One or more monitors are down
+
+### Investigation (Yellow/Orange)
+- **Text:** "Exploring issues"
+- **Color:** Orange/Yellow background
+- **Indicator:** Orange dot
+- **Meaning:** System is experiencing issues under investigation
+
+<Note>
+Badges update automatically based on your monitor status. You don't need to manually change them.
+</Note>
+
+## Custom Text Option
+
+You can enable custom text for your badge instead of using the default status messages:
+
+**Toggle:** CUSTOM TEXT (on/off switch)
+
+When enabled, you can specify:
+- Custom operational message
+- Custom degraded message
+- Custom down message
+
+This allows you to match your company's communication style.
+
+## Embed Code
+
+The **EMBED CODE** section provides ready-to-use HTML code for embedding the badge.
+
+### HTML Embed
+
+```html
+<a href="https://status.statuspageone.com" target="_blank" rel="noopener noreferrer">
+  <img src="https://status.statuspage.one/api/badges/c1rui6avx08bx20fr3bne9vy"
+       alt="StatusPage.one - Status" />
+</a>
+```
+
+**Features:**
+- Links to your status page
+- Opens in new tab (`target="_blank"`)
+- Includes security attributes (`rel="noopener noreferrer"`)
+- Dynamic image that updates automatically
+- Alt text for accessibility
+
+**Copy Button:**
+Click the copy icon (📋) to copy the embed code to your clipboard.
+
+## Where to Use Badges
+
+<CardGroup cols={2}>
+  <Card title="Website Footer" icon="globe">
+    Standard placement most users expect to find
+  </Card>
+  <Card title="Documentation" icon="book">
+    Show API or service status in your docs
+  </Card>
+  <Card title="GitHub README" icon="github">
+    Display status in your repository README
+  </Card>
+  <Card title="Application Dashboard" icon="gauge">
+    In-app status visibility
+  </Card>
+  <Card title="Support Pages" icon="headset">
+    Help users check status before contacting support
+  </Card>
+  <Card title="Blog" icon="newspaper">
+    Include in incident post-mortems
+  </Card>
+</CardGroup>
+
+## Implementation Examples
+
+### Website Footer
+
+```html
+<footer>
+  <div class="footer-content">
+    <a href="https://status.yourcompany.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://status.statuspage.one/api/badges/YOUR_BADGE_ID"
+           alt="System Status" />
+    </a>
+  </div>
+</footer>
+```
+
+### GitHub README (Markdown)
+
+```markdown
+## System Status
+
+[![System Status](https://status.statuspage.one/api/badges/YOUR_BADGE_ID)](https://status.yourcompany.com)
+
+Check our [status page](https://status.yourcompany.com) for real-time updates.
+```
+
+### React Component
+
+```jsx
+export function StatusBadge() {
+  return (
+    <a
+      href="https://status.yourcompany.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="status-badge-link"
+    >
+      <img
+        src="https://status.statuspage.one/api/badges/YOUR_BADGE_ID"
+        alt="System Status"
+        loading="lazy"
+      />
+    </a>
+  );
+}
+```
+
+### Next.js Component
+
+```tsx
+import Image from 'next/image';
+import Link from 'next/link';
+
+export function StatusBadge() {
+  return (
+    <Link
+      href="https://status.yourcompany.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src="https://status.statuspage.one/api/badges/YOUR_BADGE_ID"
+        alt="System Status"
+        width={150}
+        height={30}
+        unoptimized // SVG badges should not be optimized
+      />
+    </Link>
+  );
+}
+```
+
+## Badge Behavior
+
+### Automatic Updates
+
+- Badges reflect current system status in real-time
+- No caching - always shows current state
+- Updates within seconds of status changes
+- No manual intervention required
+
+### Click Behavior
+
+When users click the badge:
+- Opens your status page in a new tab
+- Provides full incident details
+- Shows historical uptime
+- Allows status subscriptions
+
+## Customization
+
+### Badge Styles
+
+While the badge appearance is standardized, you can customize the surrounding context:
+
+**Wrapper Styling:**
+```css
+.status-badge-link {
+  display: inline-block;
+  margin: 10px 0;
+  transition: opacity 0.2s;
+}
+
+.status-badge-link:hover {
+  opacity: 0.8;
+}
+```
+
+**With Custom Text:**
+```html
+<div class="status-container">
+  <span>Service Status:</span>
+  <a href="https://status.yourcompany.com" target="_blank" rel="noopener noreferrer">
+    <img src="https://status.statuspage.one/api/badges/YOUR_BADGE_ID" alt="Status" />
+  </a>
+</div>
+```
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Always Link to Full Status Page">
+    Users clicking the badge should go to your full status page for details, not just see a static image.
+  </Accordion>
+
+  <Accordion title="Use Descriptive Alt Text">
+    Include meaningful alt text like "System Status" or "[YourCompany] Status" for accessibility.
+  </Accordion>
+
+  <Accordion title="Place in Visible Location">
+    Put badges where users naturally look during issues - footer, header, or documentation.
+  </Accordion>
+
+  <Accordion title="Don't Cache Badge Images">
+    Ensure your web server or CDN doesn't cache the badge image, as it needs to update in real-time.
+  </Accordion>
+
+  <Accordion title="Test in Different Browsers">
+    Verify the badge displays correctly across browsers and devices.
+  </Accordion>
+
+  <Accordion title="Include in Documentation">
+    Add badges to API documentation so developers can quickly check service health.
+  </Accordion>
+</AccordionGroup>
+
+## Common Placements
+
+### Application Header
+
+```html
+<header>
+  <nav>
+    <div class="nav-left">
+      <a href="/">Home</a>
+      <a href="/docs">Docs</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://status.yourcompany.com" target="_blank" rel="noopener noreferrer">
+        <img src="https://status.statuspage.one/api/badges/YOUR_BADGE_ID"
+             alt="Status"
+             style="vertical-align: middle;" />
+      </a>
+    </div>
+  </nav>
+</header>
+```
+
+### Documentation Sidebar
+
+```html
+<aside class="docs-sidebar">
+  <h3>Quick Links</h3>
+  <ul>
+    <li><a href="/getting-started">Getting Started</a></li>
+    <li><a href="/api-reference">API Reference</a></li>
+    <li>
+      <a href="https://status.yourcompany.com" target="_blank" rel="noopener noreferrer">
+        <img src="https://status.statuspage.one/api/badges/YOUR_BADGE_ID"
+             alt="API Status" />
+      </a>
+    </li>
+  </ul>
+</aside>
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Badge not updating">
+    **Cause:** Browser or CDN caching.
+
+    **Solution:**
+    - Clear browser cache
+    - Ensure no caching headers on badge URL
+    - Check CDN settings to bypass cache for badge endpoint
+  </Accordion>
+
+  <Accordion title="Badge shows broken image">
+    **Cause:** Incorrect badge ID or URL.
+
+    **Solution:**
+    - Verify the embed code is copied correctly
+    - Check that the badge ID matches your status page
+  </Accordion>
+
+  <Accordion title="Badge not clickable">
+    **Cause:** Missing or broken anchor tag.
+
+    **Solution:** Ensure the `<img>` is wrapped in an `<a>` tag linking to your status page.
+  </Accordion>
+</AccordionGroup>
+
+## Badge vs Status Page Widget
+
+**Status Badge:**
+- ✓ Lightweight image
+- ✓ Fast loading
+- ✓ Simple integration
+- ✗ Limited information (just current status)
+- ✗ Requires click to see details
+
+**Full Status Page:**
+- ✓ Complete status information
+- ✓ Historical data
+- ✓ Incident details
+- ✗ Requires separate page visit
+- ✗ More complex to embed
+
+<Tip>
+Use badges for at-a-glance status, but always link to your full status page for detailed information.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Custom Domain" icon="globe" href="/docs/status-pages/custom-domains">
+    Use your own domain for badge links
+  </Card>
+  <Card title="Components" icon="layer-group" href="/docs/status-pages/components">
+    Configure what services show on your status page
+  </Card>
+  <Card title="Incidents" icon="triangle-exclamation" href="/docs/incidents-maintenance/incidents">
+    Manage incidents that affect badge status
+  </Card>
+  <Card title="Status Page Overview" icon="browser" href="/docs/status-pages/overview">
+    Back to status pages overview
+  </Card>
+</CardGroup>
