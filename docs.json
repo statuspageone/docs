@@ -18,6 +18,57 @@
             "pages": ["index", "docs/quickstart", "docs/development"]
           }
         ]
+      },
+      {
+        "tab": "Product Documentation",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": ["docs/getting-started/introduction"]
+          },
+          {
+            "group": "Monitoring",
+            "pages": [
+              "docs/monitoring/monitors-overview",
+              "docs/monitoring/creating-monitors",
+              "docs/monitoring/monitor-statistics",
+              "docs/monitoring/monitor-alerts"
+            ]
+          },
+          {
+            "group": "Status Pages",
+            "pages": [
+              "docs/status-pages/overview",
+              "docs/status-pages/components",
+              "docs/status-pages/custom-domains",
+              "docs/status-pages/badges"
+            ]
+          },
+          {
+            "group": "Incidents & Maintenance",
+            "pages": [
+              "docs/incidents-maintenance/incidents",
+              "docs/incidents-maintenance/incident-updates",
+              "docs/incidents-maintenance/maintenance",
+              "docs/incidents-maintenance/maintenance-updates"
+            ]
+          },
+          {
+            "group": "Notifications",
+            "pages": [
+              "docs/notifications/alert-rules",
+              "docs/notifications/integrations",
+              "docs/notifications/notification-channels"
+            ]
+          },
+          {
+            "group": "Organization",
+            "pages": [
+              "docs/organization/team-members",
+              "docs/organization/settings"
+            ]
+          }
+        ]
       }
     ],
     "global": {
