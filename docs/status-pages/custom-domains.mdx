@@ -1,0 +1,250 @@
+---
+title: "Custom Domains"
+description: "Use your own domain (like status.yourcompany.com) for your status page"
+---
+
+## Overview
+
+By default, your status page is accessible at a subdomain like `yourcompany.statuspage.one`. With a custom domain, you can use your own domain such as `status.yourcompany.com` for a more professional appearance.
+
+![Domain Configuration](/images/product/console.statuspageone.com_en-US_status-page_c1rui6avx08bx20fr3bne9vy_settings?tab=domain.png)
+
+## Accessing Domain Settings
+
+1. Navigate to **Status Pages** in the sidebar
+2. Select your status page
+3. Click **Settings**
+4. Select the **Domain** tab
+
+## Domain Options
+
+### Default Subdomain
+
+**Option:** Use a subdomain on statuspage.one
+**Format:** `yourcompany.statuspage.one`
+
+**Advantages:**
+- ✓ No DNS configuration required
+- ✓ SSL certificate automatically provided
+- ✓ Works immediately
+- ✓ No additional cost
+
+**Disadvantages:**
+- ✗ Less professional appearance
+- ✗ Uses StatusPage.one branding in URL
+
+### Custom Domain
+
+**Option:** Use your own domain
+**Format:** `status.yourcompany.com`
+
+**Advantages:**
+- ✓ Professional, branded appearance
+- ✓ Matches your company domain
+- ✓ Better trust and recognition
+- ✓ Custom SSL certificate included
+
+**Disadvantages:**
+- ✗ Requires DNS configuration
+- ✗ Takes time for DNS propagation
+
+<Tip>
+Most companies use a subdomain like `status.yourcompany.com` or `health.yourcompany.com` rather than a separate domain.
+</Tip>
+
+## Setting Up a Custom Domain
+
+<Steps>
+  <Step title="Choose Custom Domain Option">
+    Select **CUSTOM DOMAIN** in the Domain Type section.
+  </Step>
+
+  <Step title="Enter Your Domain">
+    Type your custom domain in the **CUSTOM DOMAIN** field (e.g., `status.yourcompany.com`).
+  </Step>
+
+  <Step title="Save Configuration">
+    Click **Save** or similar action to save your domain configuration.
+  </Step>
+
+  <Step title="Configure DNS">
+    After saving, you'll receive DNS configuration instructions. You need to add a CNAME record at your DNS provider.
+  </Step>
+
+  <Step title="Wait for Verification">
+    DNS changes can take 1-48 hours to propagate. Once verified, you'll see "Domain Verified" status.
+  </Step>
+</Steps>
+
+## DNS Configuration
+
+After entering your custom domain, you'll need to configure DNS settings with your domain provider.
+
+### CNAME Record Setup
+
+You'll need to create a CNAME record pointing to your StatusPage.one domain:
+
+```
+Type: CNAME
+Name: status (or your chosen subdomain)
+Value: [provided by StatusPage.one]
+TTL: 3600 (or automatic)
+```
+
+**Example:**
+```
+status.yourcompany.com → CNAME → cname.vercel-dns.com
+```
+
+### Where to Add DNS Records
+
+Popular DNS providers:
+- **Cloudflare** - DNS → Records → Add record
+- **AWS Route 53** - Hosted zones → Create record
+- **Google Domains** - DNS → Custom records
+- **Namecheap** - Advanced DNS → Add new record
+- **GoDaddy** - DNS Management → Add record
+
+<Warning>
+Do not use an A record. Custom domains require a CNAME record to work properly.
+</Warning>
+
+## Verification Status
+
+After configuring DNS, the system will automatically check for verification:
+
+### Domain Verified (Green checkmark)
+
+✓ DNS is configured correctly
+✓ Custom domain is active
+✓ Status page is accessible at your custom domain
+✓ SSL certificate is provisioned
+
+### Pending Verification
+
+⏳ DNS records not yet detected
+⏳ Waiting for DNS propagation
+⏳ May take up to 48 hours
+
+<Note>
+DNS propagation typically takes 15 minutes to 2 hours, but can take up to 48 hours in some cases.
+</Note>
+
+## Current URLs
+
+The settings page shows both URLs:
+
+**Default URL:**
+- Your original StatusPage.one subdomain
+- Badge labeled "Default"
+- Always remains accessible as a backup
+
+**Custom Domain (Primary):**
+- Your custom domain after verification
+- Marked as primary once verified
+- "Domain Verified" status indicator
+- **Remove** button to delete custom domain
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Domain not verifying after 48 hours">
+    **Check:**
+    - CNAME record is correct (no typos)
+    - Using CNAME, not A record
+    - No conflicting records for the same subdomain
+    - DNS changes have saved (check with `dig status.yourcompany.com`)
+
+    **Solution:** Verify DNS settings with your provider's documentation or support.
+  </Accordion>
+
+  <Accordion title="SSL certificate error">
+    **Cause:** Certificate is still being provisioned.
+
+    **Solution:** Wait 10-15 minutes after DNS verification. SSL certificates are generated automatically.
+  </Accordion>
+
+  <Accordion title="Page shows 404 error">
+    **Cause:** DNS is not pointing to the correct target, or verification hasn't completed.
+
+    **Solution:** Double-check your CNAME value matches exactly what was provided.
+  </Accordion>
+
+  <Accordion title="Want to change custom domain">
+    **Solution:** Click **Remove** on the current custom domain, then add your new domain following the setup steps.
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use a 'status' Subdomain">
+    The subdomain `status.yourcompany.com` is industry standard and users expect to find status pages there.
+  </Accordion>
+
+  <Accordion title="Set Low TTL Initially">
+    When first configuring DNS, use a low TTL (300-600 seconds) so you can make changes quickly if needed. Increase it once verified.
+  </Accordion>
+
+  <Accordion title="Test Before Sharing">
+    After verification, test your custom domain in different browsers and networks before sharing publicly.
+  </Accordion>
+
+  <Accordion title="Keep Default URL">
+    Don't remove your default StatusPage.one URL. It serves as a backup if DNS issues occur.
+  </Accordion>
+
+  <Accordion title="Update Links">
+    After custom domain is verified, update all links in your application, documentation, and email signatures.
+  </Accordion>
+</AccordionGroup>
+
+## Common Subdomains
+
+| Subdomain | Example | Purpose |
+|-----------|---------|---------|
+| status | status.company.com | Most common choice |
+| health | health.company.com | Alternative option |
+| uptime | uptime.company.com | Emphasizes reliability |
+| availability | availability.company.com | More formal |
+
+## Removing a Custom Domain
+
+To remove your custom domain and revert to the default:
+
+1. Navigate to **Settings** → **Domain** tab
+2. Click **Remove** next to your custom domain
+3. Confirm the removal
+4. Your status page will be accessible only at the default URL
+
+<Warning>
+After removing a custom domain, any links to the custom URL will stop working. Update all references before removing.
+</Warning>
+
+## SSL Certificates
+
+SSL certificates for custom domains are:
+- ✓ Automatically provisioned
+- ✓ Automatically renewed
+- ✓ Free (included with your plan)
+- ✓ Full SSL/TLS encryption
+- ✓ Modern browser compatible
+
+You don't need to upload or manage certificates manually.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Embed Badges" icon="badge-check" href="/docs/status-pages/badges">
+    Add status badges using your custom domain
+  </Card>
+  <Card title="Customize Branding" icon="palette" href="/docs/status-pages/overview">
+    Adjust colors and appearance
+  </Card>
+  <Card title="Components" icon="layer-group" href="/docs/status-pages/components">
+    Organize monitors on your status page
+  </Card>
+  <Card title="Status Page Overview" icon="browser" href="/docs/status-pages/overview">
+    Back to status pages overview
+  </Card>
+</CardGroup>
