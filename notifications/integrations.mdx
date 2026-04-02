@@ -5,75 +5,159 @@ description: "Set up Email, SMS, Slack, Webhook, and other notification channels
 
 ## Available Integrations
 
-StatusPage.one supports multiple notification channels to ensure you never miss an alert.
+StatusPage.one lets you attach notification channels directly to a monitor. Each integration type has a slightly different setup form depending on the destination, credential, or endpoint it needs.
 
-## Email Notifications
+## Email
 
-Send alerts to email addresses.
+Email integrations send alerts to a single inbox for the selected monitor.
 
-**Setup:**
-1. Navigate to Alerts
-2. Add new integration
-3. Select Email
-4. Enter email address
-5. Save
+![Email integration form](/images/product/console.statuspageone.com_en-US_org_fvd0bqahqfj5nnf2d4m5n373_monitors_jpbbnit76o9gx6ifthw5oxld_alerts_new_email.png)
 
-**Best For:** Team notifications, ticketing systems, documentation
-
-## SMS Notifications
-
-Receive text messages when monitors go down.
+**What you need:** An `Email Address` that should receive monitor alerts.
 
 **Setup:**
-1. Add new integration
-2. Select SMS
-3. Enter phone number with country code (e.g., +1-555-0123)
-4. Save
+1. Open the monitor's Alerts screen.
+2. Click `Add Integration`.
+3. Select `Email` as the integration type.
+4. Enter the destination email address.
+5. Click `Create Integration`.
 
-**Best For:** Critical alerts, on-call engineers, immediate notifications
+## SMS
 
-## Slack Integration
+SMS integrations send alert messages to a phone number in international format.
 
-Post alerts to Slack channels.
+![SMS integration form](/images/product/console.statuspageone.com_en-US_org_fvd0bqahqfj5nnf2d4m5n373_monitors_jpbbnit76o9gx6ifthw5oxld_alerts_new_sms.png)
 
-**Setup:**
-1. Create incoming webhook in Slack
-2. Add new integration in StatusPage.one
-3. Select Slack
-4. Paste webhook URL
-5. Save
-
-**Best For:** Team collaboration, incident response, real-time awareness
-
-## Webhook Integration
-
-Send HTTP requests to custom endpoints.
+**What you need:** A `Phone Number` with country code, such as `+1234567890`.
 
 **Setup:**
-1. Add new integration
-2. Select Webhook
-3. Enter URL and configure headers
-4. Save
+1. Open the monitor's Alerts screen.
+2. Click `Add Integration`.
+3. Select `SMS`.
+4. Enter the destination phone number with country code.
+5. Click `Create Integration`.
 
-**Best For:** Custom integrations, automation, third-party tools
+## Slack
 
-## Microsoft Teams
+Slack integrations send monitor alerts to a Slack webhook, with an optional channel override.
 
-Post to Teams channels.
+![Slack integration form](/images/product/console.statuspageone.com_en-US_org_fvd0bqahqfj5nnf2d4m5n373_monitors_jpbbnit76o9gx6ifthw5oxld_alerts_new_slack.png)
 
-**Setup:** Similar to Slack, using Teams incoming webhook
+**What you need:**
+- A `Slack Webhook URL`
+- An optional `Channel` such as `#alerts`
+
+**Setup:**
+1. Create an incoming webhook in Slack.
+2. Open the monitor's Alerts screen in StatusPage.one.
+3. Click `Add Integration`.
+4. Select `Slack`.
+5. Paste the Slack webhook URL.
+6. Optionally enter a channel override.
+7. Click `Create Integration`.
 
 ## Discord
 
-Send notifications to Discord servers.
+Discord integrations deliver monitor alerts to a Discord channel through a webhook URL.
 
-**Setup:** Create webhook in Discord, add to StatusPage.one
+![Discord integration form](/images/product/console.statuspageone.com_en-US_org_fvd0bqahqfj5nnf2d4m5n373_monitors_jpbbnit76o9gx6ifthw5oxld_alerts_new_discord.png)
+
+**What you need:** A `Discord Webhook URL`.
+
+**Setup:**
+1. Create a webhook in your Discord server.
+2. Open the monitor's Alerts screen.
+3. Click `Add Integration`.
+4. Select `Discord`.
+5. Paste the Discord webhook URL.
+6. Click `Create Integration`.
 
 ## Telegram
 
-Send messages to Telegram chats.
+Telegram integrations send monitor alerts through a Telegram bot to a specific chat.
 
-**Setup:** Configure bot token and chat ID
+![Telegram integration form](/images/product/console.statuspageone.com_en-US_org_fvd0bqahqfj5nnf2d4m5n373_monitors_jpbbnit76o9gx6ifthw5oxld_alerts_new_telegram.png)
+
+**What you need:**
+- A Telegram `Bot Token`
+- A destination `Chat ID`
+
+**Setup:**
+1. Create or choose a Telegram bot and copy its bot token.
+2. Identify the target chat ID for the user, group, or channel that should receive alerts.
+3. Open the monitor's Alerts screen.
+4. Click `Add Integration`.
+5. Select `Telegram`.
+6. Enter the bot token and chat ID.
+7. Click `Create Integration`.
+
+## Webhook Integration
+
+Webhook integrations send HTTP requests to your own endpoint when the monitor triggers an alert notification.
+
+![Webhook integration form](/images/product/console.statuspageone.com_en-US_org_fvd0bqahqfj5nnf2d4m5n373_monitors_jpbbnit76o9gx6ifthw5oxld_alerts_new_webhook.png)
+
+**What you need:**
+- A `Webhook URL`
+- An `HTTP Method`
+- Optional `Custom Headers (JSON)`
+
+**Setup:**
+1. Open the monitor's Alerts screen.
+2. Click `Add Integration`.
+3. Select `Webhook`.
+4. Enter the destination webhook URL.
+5. Choose the HTTP method.
+6. Optionally add custom headers as JSON.
+7. Click `Create Integration`.
+
+### Webhook Request Format
+
+Webhook notifications are sent with `Content-Type: application/json`. The default `User-Agent` is `StatusPageOne-Monitor/1.0`. If you configure custom headers in the integration, they are added to the outgoing request.
+
+### Webhook Payload
+
+This is the exact JSON payload shape StatusPage.one sends today:
+
+```json
+{
+  "event_type": "monitor_alert",
+  "monitor": {
+    "id": "mon_123",
+    "name": "Production API",
+    "url": "https://api.example.com/health",
+    "status": "DOWN"
+  },
+  "check_result": {
+    "status": "DOWN",
+    "timestamp": "2026-04-02T14:30:00Z",
+    "region": "us-east-1",
+    "error_message": "request timeout",
+    "response_time_ms": 5000,
+    "status_code": 504
+  },
+  "context": {
+    "consecutive_failures": 3,
+    "previous_status": "UP"
+  }
+}
+```
+
+### Payload Fields
+
+- `event_type`: Always `monitor_alert` for webhook integrations.
+- `monitor.id`: Internal monitor ID.
+- `monitor.name`: Monitor name shown in the dashboard.
+- `monitor.url`: Target URL configured on the monitor.
+- `monitor.status`: Current check status, such as `UP` or `DOWN`.
+- `check_result.status`: Current result for the alerting check.
+- `check_result.timestamp`: RFC 3339 timestamp for when the check was performed.
+- `check_result.region`: Region where the check ran.
+- `check_result.error_message`: Present when the check fails with an error.
+- `check_result.response_time_ms`: Present when a response time is available.
+- `check_result.status_code`: Present when an HTTP status code is available.
+- `context.consecutive_failures`: Number of consecutive failed checks at the time of the alert.
+- `context.previous_status`: Previous known monitor status before this alert.
 
 ## Next Steps
 
